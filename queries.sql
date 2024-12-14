@@ -1,4 +1,5 @@
 -- a. Query using INNER JOIN
+
 -- Lấy danh sách chuyến bay, bao gồm thông tin sân bay khởi hành và sân bay đến.
 USE FlightManagement;
 
@@ -11,7 +12,9 @@ SELECT
 FROM FLIGHTS
 INNER JOIN AIRPORTS AS AIRPORTS1 ON FLIGHTS.departureAirportID = AIRPORTS1.airportID
 INNER JOIN AIRPORTS AS AIRPORTS2 ON FLIGHTS.arrivalAirportID = AIRPORTS2.airportID;
+
 -- b. Query using OUTER JOIN
+
 -- Lấy danh sách tất cả sân bay và các chuyến bay khởi hành từ đó (nếu có).
 
 SELECT 
@@ -22,6 +25,7 @@ FROM AIRPORTS
 LEFT OUTER JOIN FLIGHTS ON AIRPORTS.airportID = FLIGHTS.departureAirportID;
 
 -- c. Using subquery in WHERE
+
 -- Tìm các chuyến bay có giá vé cơ bản cao hơn giá vé trung bình.
 
 SELECT 
@@ -31,6 +35,7 @@ FROM FLIGHTS
 WHERE baseFare > (SELECT AVG(baseFare) FROM FLIGHTS);
 
 -- d. Using subquery in FROM
+
 -- Hiển thị số chuyến bay từ mỗi sân bay khởi hành.
     
 SELECT 
@@ -48,6 +53,7 @@ INNER JOIN AIRPORTS
     ON flightCounts.departureAirportID = AIRPORTS.airportID;
     
 -- e. Query using GROUP BY and aggregate functions
+
 -- Tính tổng số chuyến bay và giá vé trung bình của mỗi sân bay khởi hành.
 
 SELECT 
@@ -60,6 +66,8 @@ INNER JOIN AIRPORTS
     ON FLIGHTS.departureAirportID = AIRPORTS.airportID
 GROUP BY 
     AIRPORTS.name;
+
+
 
 
 
